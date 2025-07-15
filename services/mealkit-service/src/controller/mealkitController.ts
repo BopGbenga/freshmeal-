@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { AppDataSource } from "../dataSource";
 import { Mealkit } from "../database/entities/mealkit";
+import { string } from "joi";
 
 const mealkitRepo = AppDataSource.getRepository(Mealkit);
 
@@ -28,7 +29,7 @@ export const getAllKit = async (req: Request, res: Response) => {
 
 export const getAkit = async (req: Request, res: Response) => {
   try {
-    const kitId = Number(req.params.id);
+    const kitId = req.params.id;
     const kits = await mealkitRepo.findOne({ where: { id: kitId } });
     if (!kits) {
       res.status(500).json({ success: false, message: "meallkit not fund" });
