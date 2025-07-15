@@ -3,7 +3,7 @@ import { AppDataSource } from "../../dataSource";
 import { Mealkit } from "../entities/mealkit";
 import { v4 as uuidv4 } from "uuid";
 
-class mealkitRepository {
+export class mealkitRepository {
   private repo = AppDataSource.getRepository(Mealkit);
 
   async findAll(): Promise<Mealkit[]> {
@@ -33,7 +33,7 @@ class mealkitRepository {
     await this.repo.update({ id }, updateData);
     return this.findbyId(id);
   }
-  async deleteMealKit(id: number): Promise<void> {
+  async deleteMealKit(id: string): Promise<void> {
     await this.repo.delete(id);
   }
 }
