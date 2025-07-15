@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import { order } from "../entities/orderEntity";
 import { AppDataSource } from "../datasource";
-import axios from "axios";
 
 const orderRepo = AppDataSource.getRepository(order);
 
@@ -15,6 +14,7 @@ export const createOrder = async (req: Request, res: Response) => {
       totalprice,
       mealkitId,
       mealKitName,
+      mealkitPrice,
     } = req.body;
   } catch (error) {}
 };

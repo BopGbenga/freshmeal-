@@ -28,6 +28,9 @@ export class order {
   @Column()
   mealkitId!: number;
 
+  @Column("float")
+  mealkitPrice!: number;
+
   @Column()
   mealKitName!: string;
 

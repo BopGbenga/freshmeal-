@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { AppDataSource } from "../dataSource";
-import { Mealkit } from "../entities/mealkit";
+import { Mealkit } from "../database/entities/mealkit";
 
 const mealkitRepo = AppDataSource.getRepository(Mealkit);
 

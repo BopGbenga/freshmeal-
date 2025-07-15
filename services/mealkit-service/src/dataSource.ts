@@ -1,5 +1,5 @@
 import { DataSource } from "typeorm";
-import { Mealkit } from "./entities/mealkit";
+import { Mealkit } from "./database/entities/mealkit";
 import dotenv from "dotenv";
 
 dotenv.config();
