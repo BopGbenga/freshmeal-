@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { order } from "../entities/orderEntity";
+import { order } from "../database/entities/orderEntity";
 import { AppDataSource } from "../datasource";
 
 const orderRepo = AppDataSource.getRepository(order);

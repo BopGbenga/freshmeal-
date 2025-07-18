@@ -11,13 +11,10 @@ export class order {
   id!: number;
 
   @Column()
-  CustomerName!: string;
+  CustomerId!: number;
 
   @Column()
-  customerPhone!: number;
-
-  @Column()
-  address!: number;
+  address!: string;
 
   @Column()
   quantity!: number;
@@ -25,14 +22,11 @@ export class order {
   @Column()
   totalprice!: number;
 
-  @Column()
-  mealkitId!: number;
+  @Column("uuid", { array: true })
+  mealkitIds!: string[];
 
-  @Column("float")
-  mealkitPrice!: number;
-
-  @Column()
-  mealKitName!: string;
+  @Column({ default: "pending" })
+  status!: string;
 
   @CreateDateColumn()
   createdAt!: Date;
