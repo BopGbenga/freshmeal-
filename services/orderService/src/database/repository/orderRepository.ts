@@ -13,7 +13,6 @@ export class orderRepostiory {
   }
 
   async createOrder(data: {
-    id: number;
     customerId: number;
     address: string;
     quantity: number;
@@ -29,5 +28,8 @@ export class orderRepostiory {
   async updateStatus(id: number, status: string): Promise<order | null> {
     await this.repo.update({ id }, { status });
     return this.findById(id);
+  }
+  async deleteOrder(id: number): Promise<void> {
+    await this.repo.delete({ id });
   }
 }
