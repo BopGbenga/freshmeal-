@@ -1,7 +1,7 @@
 import { orderRepostiory } from "../database/repository/orderRepository";
 import { APIError } from "../utils/appError";
 
-class orderService {
+export class orderService {
   private repo = new orderRepostiory();
 
   async createOrder(data: {

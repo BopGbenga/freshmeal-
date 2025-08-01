@@ -1,6 +1,5 @@
 import { mealkitRepository } from "../database/repository/mealkit-repostory.";
-
-import { AppError } from "../utils/appErrors";
+import { APIError } from "../utils/appErrors";
 
 class mealkitService {
   private repository = new mealkitRepository();
@@ -12,21 +11,37 @@ class mealkitService {
     instructions: string;
     price: number;
   }) {
-    return this.repository.createMealkit(data);
+    return await this.repository.createMealkit(data);
   }
 
   async getAllMealKit() {
-    return this.repository.findAll();
+    try {
+      return await this.repository.findAll();
+    } catch (error) {
+      throw new APIError("Data not found");
+    }
   }
   async getMealKitById(id: string) {
-    return this.repository.findbyId(id);
+    try {
+      return await this.repository.findbyId(id);
+    } catch (error) {
+      throw new APIError("mealkit not found");
+    }
   }
   async updateMealKit(id: string, data: Partial<any>) {
-    await this.repository.updateMealkit(id, data);
-    return this.getMealKitById(id);
+    try {
+      await this.repository.updateMealkit(id, data);
+      return this.getMealKitById(id);
+    } catch (error) {
+      throw new APIError("failed to update mealkit");
+    }
   }
 
   async deleteById(id: string) {
-    return this.repository.deleteMealKit(id);
+    try {
+      await this.repository.deleteMealKit(id);
+    } catch (error) {
+      throw new APIError("failed to delete mealkit");
+    }
   }
 }
