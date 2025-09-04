@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import joi, { required } from "joi";
 
-export const validatMealkit = async (
+export const validateMealkit = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -25,4 +25,18 @@ export const validatMealkit = async (
       "number.base": "invalid type, please provide a valid number",
     }),
   });
+  try {
+    await schema.validateAsync(req.body, { abortEarly: false });
+    next();
+  } catch (error: any) {
+    const errors = error.details.map((detail: any) => ({
+      field: detail.context.key,
+      message: detail.message,
+    }));
+    res.status(422).json({
+      message: "validation error",
+      success: false,
+      errors,
+    });
+  }
 };
